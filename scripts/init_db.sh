@@ -23,7 +23,7 @@ DB_NAME="${POSTGES_DB:=newsletter}"
 DB_PORT="${POSTGRES_PORT:=5432}"
 DB_HOST="${POSTGRES_HOST:=localhost}"
 
-if [[ -z "${SKIP_DOCKER}" ]]
+if [[ -z "${SKIP_DOCKER}" ]];
 then
     RUNNING_POSTGRES_CONTAINER=$(docker ps --filter 'name=postgres' --format '{{.ID}}')
     if [[ -n $RUNNING_POSTGRES_CONTAINER]]; then
