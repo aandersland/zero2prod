@@ -36,7 +36,7 @@ jobs:
           --no-default-features
           --locked
       - name: install postgres-client
-        run: sudo apt-get update && suo apt-get install postgresql-client -y
+        run: sudo apt-get update && sudo apt-get install postgresql-client -y
       - name: migrate database
         run: SKIP_DOCKER=true ./scripts/init_db.sh
       - name: run tests
@@ -76,11 +76,11 @@ jobs:
       - name: install sqlx-cli
         run: cargo install sqlx-cli
           --version=${{env.SQLX_VERSION}}
-          --features ${{env.SQLX_FEATURES}}
+          --features=${{env.SQLX_FEATURES}}
           --no-default-features
           --locked
       - name: install postgres-client
-        run: sudo apt-get update && suo apt-get install postgresql-client -y
+        run: sudo apt-get update && sudo apt-get install postgresql-client -y
       - name: migrate database
         run: SKIP_DOCKER=true ./scripts/init_db.sh
       - name: Linting
@@ -112,7 +112,7 @@ jobs:
       - name: install sqlx-cli
         run: cargo install sqlx-cli
           --version=${{env.SQLX_VERSION}}
-          --features ${{env.SQLX_FEATURES}}
+          --features=${{env.SQLX_FEATURES}}
           --no-default-features
           --locked
       - name: migrate database
