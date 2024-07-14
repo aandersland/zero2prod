@@ -32,9 +32,9 @@ then
         exit 1
     fi
     docker run \
-        -e POSTGRES_USER=${DB_USER} \
-        -e POSTGRES_PASSWORD=${DB_PASSWORD} \
-        -e POSTGRES_DB=${DB_NAME} \
+        -e POSTGRES_USER="${DB_USER}" \
+        -e POSTGRES_PASSWORD="${DB_PASSWORD}" \
+        -e POSTGRES_DB="${DB_NAME}" \
         -p "${DB_PORT}":5432 \
         -d \
         --name "postgres_$(date '+%s')" \
@@ -53,4 +53,4 @@ export DATABASE_URL
 sqlx database create
 sqlx migrate run
 
->&2 echo "Postgress has been migrated, ready to go!"
+>&2 echo "Postgres has been migrated, ready to go!"
