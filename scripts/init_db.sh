@@ -23,10 +23,11 @@ DB_NAME="${POSTGES_DB:=newsletter}"
 DB_PORT="${POSTGRES_PORT:=5432}"
 DB_HOST="${POSTGRES_HOST:=localhost}"
 
-if [[ -z "${SKIP_DOCKER}" ]]; then
+if [[ -z "${SKIP_DOCKER}" ]]
+then
     RUNNING_POSTGRES_CONTAINER=$(docker ps --filter 'name=postgres' --format '{{.ID}}')
-    if [[ -n $RUNNING_POSTGRES_CONTAINER]]; then
-        echo >&2  "there is a runing postgres container already running, kill it with"
+    if [[ -n "${RUNNING_POSTGRES_CONTAINER}" ]]; then
+        echo >&2  "there is a postgres container already running, kill it with"
         echo >&2 "  docker kill ${RUNNING_POSTGRES_CONTAINER}"
         exit 1
     fi
@@ -39,6 +40,7 @@ if [[ -z "${SKIP_DOCKER}" ]]; then
         --name "postgres_$(date '+%s')" \
         postgres -N 1000
 fi
+
 until PGPASSWORD="${DB_PASSWORD}" psql -h "${DB_HOST}" -U "${DB_USER}" -p "${DB_PORT}" -d "postgres" -c '\q'; do
     >&2 echo "Postgres is still unavailable - sleeping"
     sleep 1
